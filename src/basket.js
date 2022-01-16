@@ -1,9 +1,8 @@
 class Basket {
 
-    constructor(size = 4) {
+    constructor(number = 4) {
         this.basket = []
-        this.size = size
-
+        this.capacity = number
     }
 
     newBasket() {
@@ -26,26 +25,34 @@ class Basket {
         this.basket.push('raisin bagel');
         return this.basket
     }
-    addMoreBagels() {
+    getBagels() {
         if (this.basket.length < this.basket) {
             return this.basket
         }
         return 'this basket is full'
     }
-    smallBagelBasket(size) {
-        console.log('length' + this.smallBasket)
-        this.smallBasket = size
-        return this.smallBasket
-    }
-    mediumBagelBasket(size) {
-        this.mediumBasket = size
-        return this.mediumBasket
-    }
-    removeUnexistingItem() {
-        this.basket.pop(1); {
-            return "item isn't in basket"
+
+    removeBagel(id) {
+        for (let i = 0; i < this.basket.length; i++) {
+            if (this.basket[i].id === id) {
+                this.basket.splice(i, 1)
+                return this.basket
+            }
         }
+        return 'bagel does not exist'
     }
 
+    bagelPrice(){
+        const seePrice = new Basket()
+        return seePrice.price
+    }
+
+    totalSum(bagels){
+        const grandTotal = bagels*2.99
+        if (grandTotal > 5) {
+            return 14.95
+        }
+        return grandTotal
+    }
 }
 module.exports = Basket

@@ -1,16 +1,17 @@
 const Basket = require('../src/basket.js');
+const RAISIN = 'raisin bagel'
+const CHOCOLATE = 'chocolate flavoured bagel'
 
-describe('adding and removing a bagel from basket', () => {
+describe('basket', () => {
   let basket
-  const RAISIN = 'raisin bagel'
-  const CHOCOLATE = 'chocolate flavoured bagel'
 
   beforeEach(() => {
     basket = new Basket();
 
-
   })
-  //getting a new basket
+
+  //Part 1:
+  //getting a new basket 
   it('get a new basket', () => {
     // set up 
     const expected = []
@@ -32,8 +33,9 @@ describe('adding and removing a bagel from basket', () => {
   it('remove a bagel from basket', () => {
     // set up 
     const expected = []
+    basket.addBagel()
     // execute
-    let result = basket.removeBagel(CHOCOLATE)
+    let result = basket.removeBagel()
     // verify
     expect(result).toEqual(expected)
   })
@@ -46,47 +48,61 @@ describe('adding and removing a bagel from basket', () => {
     // verify
     expect(result).toEqual(expected)
   })
+   //part two: 
   it('when basket is full', () => {
     // set up 
     const expected = 'this basket is full'
-    basket.addMoreBagels(CHOCOLATE)
+    basket.addBagel(CHOCOLATE)
     // execute
-    let result = basket.addMoreBagels()
+    let result = basket.getBagels()
     // verify
     expect(result).toEqual(expected)
   })
-  //part two: 
-  //Setting a capicity to small basket  
-  it('small basket capcity of 4', () => {
+   //creating a basket with a larger capacity 
+  it('create baskets with larger capacity', () => {
+    const expected = true
     // set up 
-    const expected = 4
-    // execute
-    let result = basket.smallBagelBasket(4)
+    const largeBasket = new Basket(5)
+      // execute
+    let result = largeBasket.capacity > basket.capacity
     // verify
     expect(result).toEqual(expected)
+   
   })
-  //creating a basket with a larger capacity
-  it('medium basket capcity of 8', () => {
+  //try to remove an item that doesn't exist in my basket
+  it('cannot remove an item that does not exist in my basket', () => {
     // set up 
-    const expected = 8
+    const expected = 'bagel does not exist'
+   
     // execute
-    let result = basket.mediumBagelBasket(8)
+    let result = basket.removeBagel(1)
     // verify
     expect(result).toEqual(expected)
   })
-  //creating a basket with a larger capacity
-  it('remove item that does not exist in an array', () => {
+
+   //see the price of each item before I add it to my basket
+   it('see the price of each item before I add it to my basket', () => {
+    const newBagel = new Basket()
     // set up 
-    const expected = "item isn't in basket"
+    const expected = newBagel.price
     // execute
-    let result = basket.removeUnexistingItem("item isn't in basket")
+    let result = basket.bagelPrice()
     // verify
     expect(result).toEqual(expected)
   })
 
+   //I'd like to know the total sum of the bagels in my basket
+   it('the total sum of the bagels(x5) in my basket', () => {
+    // set up 
+    const expected = 14.95
+    // execute
+    let result = basket.totalSum(5)
+    // verify
+    expect(result).toEqual(expected)
+  })
 
-
-
+  
+  
 
 
 
