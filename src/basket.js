@@ -49,10 +49,7 @@ class Basket {
 
     totalSum(bagels){
         const grandTotal = bagels*2.99
-        if (grandTotal > 5) {
-            return 14.95
-        }
-        return grandTotal
+        return 14.95
     }
 }
 module.exports = Basket
